@@ -51,6 +51,7 @@
 #include <xen/interface/physdev.h>
 #include <xen/interface/platform.h>
 #include <xen/interface/xen-mca.h>
+#include <xen/interface/domctl.h>
 
 struct xen_dm_op_buf;
 
@@ -421,6 +422,14 @@ HYPERVISOR_hvm_op(int op, void *arg)
 {
        return _hypercall2(unsigned long, hvm_op, op, arg);
 }
+
+static inline int
+HYPERVISOR_domctl(
+	struct xen_domctl *arg)
+{
+	return _hypercall1(int, domctl, arg);
+}
+
 
 static inline int
 HYPERVISOR_tmem_op(

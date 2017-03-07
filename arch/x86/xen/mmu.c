@@ -4,6 +4,7 @@
 #include <asm/xen/page.h>
 #include <asm/xen/hypercall.h>
 #include <xen/interface/memory.h>
+#include <linux/vmalloc.h>
 
 #include "multicalls.h"
 #include "mmu.h"
