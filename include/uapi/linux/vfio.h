@@ -332,6 +332,12 @@ struct vfio_region_info_cap_type {
 /* sub-types for VFIO_REGION_TYPE_GFX */
 #define VFIO_REGION_SUBTYPE_GFX_EDID            (1)
 
+/* Offset in region to save device state */
+#define VFIO_DEVICE_STATE_OFFSET	1
+
+#define VFIO_DEVICE_START	0
+#define VFIO_DEVICE_STOP	1
+
 /**
  * struct vfio_region_gfx_edid - EDID region layout.
  *
