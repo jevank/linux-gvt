@@ -428,10 +428,6 @@ static struct intel_vgpu *__intel_gvt_create_vgpu(struct intel_gvt *gvt,
 
 	intel_gvt_debugfs_add_vgpu(vgpu);
 
-	ret = intel_gvt_hypervisor_set_opregion(vgpu);
-	if (ret)
-		goto out_clean_sched_policy;
-
 	if (IS_BROADWELL(gvt->dev_priv) || IS_BROXTON(gvt->dev_priv))
 		ret = intel_gvt_hypervisor_set_edid(vgpu, PORT_B);
 	else
