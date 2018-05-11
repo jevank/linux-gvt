@@ -313,8 +313,19 @@ struct vfio_region_info_cap_type {
 #define VFIO_REGION_SUBTYPE_INTEL_IGD_HOST_CFG         (2)
 #define VFIO_REGION_SUBTYPE_INTEL_IGD_LPC_CFG          (3)
 
+/*
+ * The region type device state is for save or restore the vfio device during
+ * migration.
+ */
+#define VFIO_REGION_TYPE_DEVICE_STATE          (1 << 30)
 /* Mdev sub-type for device state save and restore */
-#define VFIO_REGION_SUBTYPE_DEVICE_STATE       (4)
+#define VFIO_REGION_SUBTYPE_DEVICE_STATE       (1)
+
+/* Offset in region to save device state */
+#define VFIO_DEVICE_STATE_OFFSET       1
+
+#define VFIO_DEVICE_START      0
+#define VFIO_DEVICE_STOP       1
 
 /* 10de vendor PCI sub-types */
 /*
@@ -331,12 +342,6 @@ struct vfio_region_info_cap_type {
 
 /* sub-types for VFIO_REGION_TYPE_GFX */
 #define VFIO_REGION_SUBTYPE_GFX_EDID            (1)
-
-/* Offset in region to save device state */
-#define VFIO_DEVICE_STATE_OFFSET	1
-
-#define VFIO_DEVICE_START	0
-#define VFIO_DEVICE_STOP	1
 
 /**
  * struct vfio_region_gfx_edid - EDID region layout.
