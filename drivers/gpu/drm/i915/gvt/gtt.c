@@ -2313,7 +2313,7 @@ static int emulate_ggtt_mmio_write(struct intel_vgpu *vgpu, unsigned int off,
 out:
 	ggtt_set_guest_entry(ggtt_mm, &e, g_gtt_index);
 
-	ggtt_get_host_entry(ggtt_mm, &e, g_gtt_index);
+	ggtt_get_host_entry(ggtt_mm, &e, h_gtt_index);
 	ggtt_invalidate_pte(vgpu, &e);
 
 	ggtt_set_host_entry(ggtt_mm, &m, h_gtt_index);
