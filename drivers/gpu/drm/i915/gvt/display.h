@@ -148,6 +148,7 @@ enum intel_vgpu_port_type {
 
 enum intel_vgpu_edid {
 	GVT_EDID_1024_768,
+	GVT_EDID_1920_1080,
 	GVT_EDID_1920_1200,
 	GVT_EDID_NUM,
 };
@@ -166,6 +167,8 @@ static inline char *vgpu_edid_str(enum intel_vgpu_edid id)
 	switch (id) {
 	case GVT_EDID_1024_768:
 		return "1024x768";
+	case GVT_EDID_1920_1080:
+		return "1920x1080";
 	case GVT_EDID_1920_1200:
 		return "1920x1200";
 	default:
