@@ -64,7 +64,7 @@ static int alloc_gm(struct intel_vgpu *vgpu, bool high_gm)
 	mutex_lock(&dev_priv->drm.struct_mutex);
 	mmio_hw_access_pre(dev_priv);
 	ret = i915_gem_gtt_insert(&dev_priv->ggtt.vm, node,
-				  size, I915_GTT_PAGE_SIZE,
+				  size, I915_GTT_PAGE_SIZE_2M,
 				  I915_COLOR_UNEVICTABLE,
 				  start, end, flags);
 	mmio_hw_access_post(dev_priv);
