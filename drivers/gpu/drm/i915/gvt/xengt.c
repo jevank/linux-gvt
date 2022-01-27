@@ -1674,7 +1674,7 @@ static int xengt_host_init(struct device *dev, void *gvt, const void *ops)
 	return ret;
 }
 
-static void xengt_host_exit(struct device *dev, void *gvt)
+static void xengt_host_exit(struct device *dev)
 {
 	xengt_sysfs_del();
 	xengt_priv.gvt = NULL;
@@ -1687,7 +1687,7 @@ static int xengt_attach_vgpu(void *vgpu, unsigned long *handle)
 	return 0;
 }
 
-static void xengt_detach_vgpu(unsigned long handle)
+static void xengt_detach_vgpu(void *vgpu)
 {
 	/* nothing to do here */
 }
