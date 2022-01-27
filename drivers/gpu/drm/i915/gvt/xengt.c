@@ -1848,6 +1848,7 @@ static void xengt_dma_unmap_guest_page(unsigned long handle,
 
 struct intel_gvt_mpt xengt_mpt = {
 	//.detect_host = xengt_detect_host,
+	.type = INTEL_GVT_HYPERVISOR_XEN,
 	.host_init = xengt_host_init,
 	.host_exit = xengt_host_exit,
 	.attach_vgpu = xengt_attach_vgpu,
@@ -1870,11 +1871,15 @@ static int __init xengt_init(void)
 {
 	if (!xen_initial_domain())
 		return -EINVAL;
+
+	if (intel_gvt_register_hypervisor(&xengt_mpt) < 0)
+		return -ENODEV;
 	return 0;
 }
 
 static void __exit xengt_exit(void)
 {
+	intel_gvt_unregister_hypervisor();
 	gvt_dbg_core("xengt: unloaded\n");
 }
 
