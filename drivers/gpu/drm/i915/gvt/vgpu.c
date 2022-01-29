@@ -414,10 +414,6 @@ static struct intel_vgpu *__intel_gvt_create_vgpu(struct intel_gvt *gvt,
 	if (ret)
 		goto out_clean_gtt;
 
-	ret = intel_vgpu_init_display(vgpu, param->resolution);
-	if (ret)
-		goto out_clean_opregion;
-
 	ret = intel_vgpu_setup_submission(vgpu);
 	if (ret)
 		goto out_clean_display;
@@ -427,13 +423,6 @@ static struct intel_vgpu *__intel_gvt_create_vgpu(struct intel_gvt *gvt,
 		goto out_clean_submission;
 
 	intel_gvt_debugfs_add_vgpu(vgpu);
-
-	if (IS_BROADWELL(gvt->dev_priv) || IS_BROXTON(gvt->dev_priv))
-		ret = intel_gvt_hypervisor_set_edid(vgpu, PORT_B);
-	else
-		ret = intel_gvt_hypervisor_set_edid(vgpu, PORT_D);
-	if (ret)
-		goto out_clean_sched_policy;
 
 	return vgpu;
 
