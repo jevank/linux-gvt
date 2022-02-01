@@ -2201,7 +2201,8 @@ static inline bool intel_vtd_active(void)
 #endif
 
 	/* Running as a guest, we assume the host is enforcing VT'd */
-	return !hypervisor_is_type(X86_HYPER_NATIVE);
+	return !(hypervisor_is_type(X86_HYPER_NATIVE) || 
+		    hypervisor_is_type(X86_HYPER_XEN_PV));
 }
 
 static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
